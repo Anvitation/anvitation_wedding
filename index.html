@@ -1,5 +1,15 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Invitation Checker</title>
+</head>
+<body>
+    <input type="text" id="guestName" placeholder="Enter your name" style="padding: 10px; width: 100%; max-width: 300px;">
+    <button onclick="checkInvitation()" style="padding: 10px; margin-top: 10px;">Check Invitation</button>
+    <p id="result" style="font-weight: bold; margin-top: 10px;"></p>
+
     <script>
     function checkInvitation() {
         let name = document.getElementById("guestName").value;
@@ -7,7 +17,8 @@
             document.getElementById("result").innerText = "Please enter your name.";
             return;
         }
-        fetch("https://script.google.com/macros/s/AKfycbzoiJr1feO8WVllbt_PEsPV7s2H17v2jkgSekerhDRpXZwlnM7VhChnZGe1fevgIJeYxA/exec?name=" + encodeURIComponent(name))
+        
+        fetch("https://script.google.com/macros/s/YOUR_NEW_SCRIPT_ID/exec?name=" + encodeURIComponent(name))
         .then(response => response.text())
         .then(data => {
             document.getElementById("result").innerText = data;
@@ -17,10 +28,5 @@
         });
     }
     </script>
-</head>
-<body>
-    <input type="text" id="guestName" placeholder="Enter your name">
-    <button onclick="checkInvitation()">Check Invitation</button>
-    <p id="result"></p>
 </body>
 </html>
