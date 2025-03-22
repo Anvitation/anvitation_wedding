@@ -18,18 +18,18 @@
             return;
         }
     
-        fetch("https://script.google.com/macros/s/YOUR_NEW_SCRIPT_ID/exec", {
-            method: "POST",
-            headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: new URLSearchParams({ name: name })
+        fetch("https://script.google.com/macros/s/YOUR_NEW_SCRIPT_ID/exec?name=" + encodeURIComponent(name), {
+        method: "GET",
+        mode: "cors", // ✅ Ensures CORS compatibility
         })
-        .then(response => response.json()) // Parse JSON response
+        .then(response => response.text())
         .then(data => {
-            document.getElementById("result").innerText = data.message;
+            document.getElementById("result").innerText = data;
         })
         .catch(error => {
             document.getElementById("result").innerText = "Error checking invitation. Try again later.";
         });
+
     }
 
     </script>
