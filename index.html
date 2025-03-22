@@ -21,18 +21,17 @@
         let scriptURL = "https://script.google.com/macros/s/AKfycbwjYLHZqCKyAsba1PuDAeJcKCPE5exjxizSBsRm8qBU4MrQ6VequqL2OqC-vwa3ymMCXQ/exec?name=" 
                         + encodeURIComponent(name);
     
-        let proxyURL = "https://corsproxy.io/?" + encodeURIComponent(scriptURL);
-    
-        fetch(proxyURL)
-            .then(response => response.json())
+        fetch(scriptURL, { method: "GET", mode: "no-cors" })
+            .then(response => response.text())
             .then(data => {
-                document.getElementById("result").innerText = data.contents; // `contents` contains the response
+                document.getElementById("result").innerText = data;
             })
             .catch(error => {
                 console.error("Fetch error:", error);
                 document.getElementById("result").innerText = "Error checking invitation. Try again later.";
             });
     }
+
     </script>
 </body>
 </html>
