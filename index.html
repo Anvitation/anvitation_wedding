@@ -11,22 +11,27 @@
     <p id="result" style="font-weight: bold; margin-top: 10px;"></p>
 
     <script>
-    function checkInvitation() {
+   function checkInvitation() {
         let name = document.getElementById("guestName").value;
         if (!name) {
             document.getElementById("result").innerText = "Please enter your name.";
             return;
         }
-        
-        fetch("https://script.google.com/macros/s/AKfycbw0x4C8E2UH0fY-SzuLitAuPNd1hH0S994pYUII1BYh-b1eJkvPGTqFA1H641E2HTnAdQ/exec?name=" + encodeURIComponent(name))
-        .then(response => response.text())
+    
+        fetch("https://script.google.com/macros/s/YOUR_NEW_SCRIPT_ID/exec", {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: new URLSearchParams({ name: name })
+        })
+        .then(response => response.json()) // Parse JSON response
         .then(data => {
-            document.getElementById("result").innerText = data;
+            document.getElementById("result").innerText = data.message;
         })
         .catch(error => {
             document.getElementById("result").innerText = "Error checking invitation. Try again later.";
         });
     }
+
     </script>
 </body>
 </html>
