@@ -12,22 +12,25 @@
 
     <script>
     function checkInvitation() {
-        let name = document.getElementById("guestName").value;
+        let name = document.getElementById("guestName").value.trim(); // Remove spaces
         if (!name) {
             document.getElementById("result").innerText = "Please enter your name.";
             return;
         }
         
-        fetch("https://script.google.com/macros/s/AKfycbwlaa8MkSUNxMcQIYD45_WLToKryw_EtMT8hIUQHL9N9ypWURwLBf-Kf-LhND3ibmGyJw/exec?name=" + encodeURIComponent(name))
+        let url = "https://script.google.com/macros/s/AKfycbwjYLHZqCKyAsba1PuDAeJcKCPE5exjxizSBsRm8qBU4MrQ6VequqL2OqC-vwa3ymMCXQ/exec?name=" + encodeURIComponent(name);
+        
+        fetch(url, { method: "GET" }) // Ensure GET request
         .then(response => response.text())
         .then(data => {
             document.getElementById("result").innerText = data;
         })
         .catch(error => {
-            console.error(error);
+            console.error("Fetch error:", error);
             document.getElementById("result").innerText = "Error checking invitation. Try again later.";
         });
     }
+
     </script>
 </body>
 </html>
