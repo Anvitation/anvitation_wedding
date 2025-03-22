@@ -21,7 +21,7 @@
         let scriptURL = "https://script.google.com/macros/s/AKfycbwjYLHZqCKyAsba1PuDAeJcKCPE5exjxizSBsRm8qBU4MrQ6VequqL2OqC-vwa3ymMCXQ/exec?name=" 
                         + encodeURIComponent(name);
     
-        fetch(scriptURL, { method: "GET", mode: "no-cors" }) // Use no-cors mode
+        fetch(scriptURL)
             .then(response => response.text())
             .then(data => {
                 document.getElementById("result").innerText = data;
