@@ -11,14 +11,14 @@
     <p id="result" style="font-weight: bold; margin-top: 10px;"></p>
 
     <script>
-      function checkInvitation() {
+    function checkInvitation() {
         let name = document.getElementById("guestName").value;
         if (!name) {
             document.getElementById("result").innerText = "Please enter your name.";
             return;
         }
         
-        fetch("https://script.google.com/macros/s/AKfycbzW9to1vTi2-e923dXg8aZMGbP2rvDzE5M-YXW4Mnej61MJGft880wfwObguURIHKrkNg/exec?name=" + encodeURIComponent(name))
+        fetch("https://script.google.com/macros/s/AKfycbwlaa8MkSUNxMcQIYD45_WLToKryw_EtMT8hIUQHL9N9ypWURwLBf-Kf-LhND3ibmGyJw/exec?name=" + encodeURIComponent(name))
         .then(response => response.text())
         .then(data => {
             document.getElementById("result").innerText = data;
