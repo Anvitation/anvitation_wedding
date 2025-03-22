@@ -11,14 +11,16 @@
     <p id="result" style="font-weight: bold; margin-top: 10px;"></p>
 
     <script>
-   function checkInvitation() {
+    function checkInvitation() {
         let name = document.getElementById("guestName").value.trim();
         if (!name) {
             document.getElementById("result").innerText = "Please enter your name.";
             return;
         }
     
-       let url = "https://api.allorigins.win/get?url=" + encodeURIComponent("https://script.google.com/macros/s/AKfycbwjYLHZqCKyAsba1PuDAeJcKCPE5exjxizSBsRm8qBU4MrQ6VequqL2OqC-vwa3ymMCXQ/exec?name=LIZA%20M.%20VALENCIA");
+        let originalURL = "https://script.google.com/macros/s/AKfycbwjYLHZqCKyAsba1PuDAeJcKCPE5exjxizSBsRm8qBU4MrQ6VequqL2OqC-vwa3ymMCXQ/exec?name=" + encodeURIComponent(name);
+        
+        let proxyURL = "https://corsproxy.io/?" + encodeURIComponent(originalURL);
     
         fetch(proxyURL, { method: "GET" })
         .then(response => response.text())
