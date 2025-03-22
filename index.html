@@ -11,16 +11,16 @@
     <p id="result" style="font-weight: bold; margin-top: 10px;"></p>
 
     <script>
-    function checkInvitation() {
-        let name = document.getElementById("guestName").value.trim(); // Remove spaces
+   function checkInvitation() {
+        let name = document.getElementById("guestName").value.trim();
         if (!name) {
             document.getElementById("result").innerText = "Please enter your name.";
             return;
         }
-        
+    
         let url = "https://script.google.com/macros/s/AKfycbwjYLHZqCKyAsba1PuDAeJcKCPE5exjxizSBsRm8qBU4MrQ6VequqL2OqC-vwa3ymMCXQ/exec?name=" + encodeURIComponent(name);
-        
-        fetch(url, { method: "GET" }) // Ensure GET request
+    
+        fetch(url, { method: "GET", mode: "cors" })  // Ensure CORS is enabled
         .then(response => response.text())
         .then(data => {
             document.getElementById("result").innerText = data;
@@ -30,7 +30,6 @@
             document.getElementById("result").innerText = "Error checking invitation. Try again later.";
         });
     }
-
     </script>
 </body>
 </html>
