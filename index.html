@@ -18,19 +18,26 @@
             return;
         }
     
-        let originalURL = "https://script.google.com/macros/s/AKfycbwjYLHZqCKyAsba1PuDAeJcKCPE5exjxizSBsRm8qBU4MrQ6VequqL2OqC-vwa3ymMCXQ/exec?name=" + encodeURIComponent(name);
-        
-        let proxyURL = "https://corsproxy.io/?" + encodeURIComponent(originalURL);
+        // 🔹 Define your proxy URL correctly
+        let proxyURL = "https://corsproxy.io/?";  // Or use another proxy like api.allorigins.win
     
-        fetch(proxyURL, { method: "GET" })
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById("result").innerText = data;
-        })
-        .catch(error => {
-            console.error("Fetch error:", error);
-            document.getElementById("result").innerText = "Error checking invitation. Try again later.";
-        });
+        // 🔹 Define your Google Apps Script Web App URL
+        let scriptURL = "https://script.google.com/macros/s/AKfycbwjYLHZqCKyAsba1PuDAeJcKCPE5exjxizSBsRm8qBU4MrQ6VequqL2OqC-vwa3ymMCXQ/exec?name=" 
+                        + encodeURIComponent(name);
+    
+        // 🔹 Combine proxy and script URL
+        let requestURL = proxyURL + scriptURL;
+    
+        // 🔹 Fetch with CORS enabled
+        fetch(requestURL, { method: "GET" })
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("result").innerText = data;
+            })
+            .catch(error => {
+                console.error("Fetch error:", error);
+                document.getElementById("result").innerText = "Error checking invitation. Try again later.";
+            });
     }
     </script>
 </body>
