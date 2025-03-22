@@ -18,9 +18,11 @@
             return;
         }
     
-        let url = "https://script.google.com/macros/s/AKfycbwjYLHZqCKyAsba1PuDAeJcKCPE5exjxizSBsRm8qBU4MrQ6VequqL2OqC-vwa3ymMCXQ/exec?name=" + encodeURIComponent(name);
+        let originalURL = "https://script.google.com/macros/s/AKfycbwjYLHZqCKyAsba1PuDAeJcKCPE5exjxizSBsRm8qBU4MrQ6VequqL2OqC-vwa3ymMCXQ/exec?name=" + encodeURIComponent(name);
+        
+        let proxyURL = "https://corsproxy.io/?" + encodeURIComponent(originalURL);
     
-        fetch(url, { method: "GET", mode: "cors" })  // Ensure CORS is enabled
+        fetch(proxyURL, { method: "GET" })
         .then(response => response.text())
         .then(data => {
             document.getElementById("result").innerText = data;
