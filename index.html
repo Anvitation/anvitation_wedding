@@ -18,9 +18,7 @@
             return;
         }
     
-        let originalURL = "https://script.google.com/macros/s/AKfycbwjYLHZqCKyAsba1PuDAeJcKCPE5exjxizSBsRm8qBU4MrQ6VequqL2OqC-vwa3ymMCXQ/exec?name=" + encodeURIComponent(name);
-        
-        let proxyURL = "https://corsproxy.io/?" + encodeURIComponent(originalURL);
+       let url = "https://api.allorigins.win/get?url=" + encodeURIComponent("https://script.google.com/macros/s/AKfycbwjYLHZqCKyAsba1PuDAeJcKCPE5exjxizSBsRm8qBU4MrQ6VequqL2OqC-vwa3ymMCXQ/exec?name=LIZA%20M.%20VALENCIA");
     
         fetch(proxyURL, { method: "GET" })
         .then(response => response.text())
