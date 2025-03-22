@@ -18,21 +18,15 @@
             return;
         }
     
-        // 🔹 Define your proxy URL correctly
-        let proxyURL = "https://corsproxy.io/?";  // Or use another proxy like api.allorigins.win
-    
-        // 🔹 Define your Google Apps Script Web App URL
         let scriptURL = "https://script.google.com/macros/s/AKfycbwjYLHZqCKyAsba1PuDAeJcKCPE5exjxizSBsRm8qBU4MrQ6VequqL2OqC-vwa3ymMCXQ/exec?name=" 
                         + encodeURIComponent(name);
     
-        // 🔹 Combine proxy and script URL
-        let requestURL = proxyURL + scriptURL;
+        let proxyURL = `https://api.allorigins.win/get?url=${encodeURIComponent(scriptURL)}`;
     
-        // 🔹 Fetch with CORS enabled
-        fetch(requestURL, { method: "GET" })
-            .then(response => response.text())
+        fetch(proxyURL)
+            .then(response => response.json())
             .then(data => {
-                document.getElementById("result").innerText = data;
+                document.getElementById("result").innerText = data.contents; // `contents` contains the response
             })
             .catch(error => {
                 console.error("Fetch error:", error);
