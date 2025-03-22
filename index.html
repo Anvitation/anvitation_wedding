@@ -18,8 +18,8 @@
             return;
         }
     
-        let scriptURL = "https://script.google.com/macros/s/AKfycbwtL_vONPDhuxnPNHg95JBJJ_DDNLcZFFc9ICJ08nNpq8fLgme_gDW4xl9NUcFGhn0okg/exec?name=" 
-                        + encodeURIComponent(name);
+        let scriptURL = "https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec?name=" 
+                + encodeURIComponent(name) + "&nocache=" + new Date().getTime();
     
         fetch(scriptURL)
             .then(response => response.text())
