@@ -21,7 +21,7 @@
         let scriptURL = "https://script.google.com/macros/s/AKfycbwjYLHZqCKyAsba1PuDAeJcKCPE5exjxizSBsRm8qBU4MrQ6VequqL2OqC-vwa3ymMCXQ/exec?name=" 
                         + encodeURIComponent(name);
     
-        let proxyURL = `https://api.allorigins.win/get?url=${encodeURIComponent(scriptURL)}`;
+        let proxyURL = "https://corsproxy.io/?" + encodeURIComponent(scriptURL);
     
         fetch(proxyURL)
             .then(response => response.json())
